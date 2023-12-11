@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIENDA DE BICICLETAS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('Fondo.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            color: #fff;
+        }
+
+        header {
+            background-color: #0d0e13; /* Color de fondo similar al de Steam */
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #0f1624; /* Color de fondo similar al de Steam */
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        section {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #bikeContainer {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .bikeCard {
+            background-color: #2b3857; /* Color de fondo para cada tarjeta de bicicleta */
+            border-radius: 8px;
+            margin: 20px;
+            padding: 20px;
+            width: 400px; /* Aumenté aún más el tamaño de las tarjetas */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .bikeCard:hover {
+            transform: scale(1.05);
+        }
+
+        .bikeImage {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        #searchBar {
+            width: 80%;
+            padding: 15px;
+            margin: 20px 0;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        #bikeStock {
+            position: relative;
+            height: 10px;
+            background-color: #d9534f; /* Color de fondo del stock en movimiento */
+            animation: moveStock 5s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes moveStock {
+            0% { width: 0%; }
+            50% { width: 100%; }
+            100% { width: 0%; }
+        }
+
+        footer {
+            background-color: #0d0e13; /* Color de fondo similar al de Steam */
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>TIENDA DE BICICLETAS</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <input type="text" id="searchBar" placeholder="Buscar bicicletas..." oninput="filterBikes()">
+        <div id="bikeContainer">
+            <div class="bikeCard" data-category="Montaña">
+                <img class="bikeImage" src="Montaña.jpg" alt="Bicicleta de Montaña">
+                <h3>Bicicleta de Montaña</h3>
+                <p>Bicicleta robusta y resistente diseñada para terrenos accidentados. Perfecta para los amantes de la aventura al aire libre.</p>
+                <p>Precio: $499</p>
+                <button>Comprar</button>
+            </div>
+
+            <div class="bikeCard" data-category="Urbana">
+                <img class="bikeImage" src="Urbana.jpg" alt="Bicicleta Urbana">
+                <h3>Bicicleta Urbana</h3>
+                <p>Bicicleta elegante y cómoda diseñada para el uso diario en entornos urbanos. Ideal para desplazamientos cortos y paseos por la ciudad.</p>
+                <p>Precio: $349</p>
+                <button>Comprar</button>
+            </div>
+
+            <div class="bikeCard" data-category="Electrica">
+                <img class="bikeImage" src="Electrica.jpg" alt="Bicicleta Eléctrica">
+                <h3>Bicicleta Eléctrica</h3>
+                <p>Bicicleta con asistencia eléctrica que facilita los desplazamientos largos y subidas empinadas. Perfecta para viajes eficientes y sin esfuerzo.</p>
+                <p>Precio: $799</p>
+                <button>Comprar</button>
+            </div>
+
+            <!-- Agregamos más tarjetas de bicicletas -->
+            <div class="bikeCard" data-category="Plegable">
+                <img class="bikeImage" src="Plegable.jpg" alt="Bicicleta Plegable">
+                <h3>Bicicleta Plegable</h3>
+                <p>Bicicleta compacta y fácil de plegar, ideal para aquellos que necesitan una solución de transporte versátil y que ahorre espacio.</p>
+                <p>Precio: $299</p>
+                <button>Comprar</button>
+            </div>
+
+            <div class="bikeCard" data-category="Carreras">
+                <img class="bikeImage" src="Carreras.jpg" alt="Bicicleta de Carreras">
+                <h3>Bicicleta de Carreras</h3>
+                <p>Bicicleta diseñada para la velocidad y el rendimiento en carreteras. Perfecta para ciclistas que buscan competir o mejorar sus tiempos.</p>
+                <p>Precio: $999</p>
+                <button>Comprar</button>
+            </div>
+
+            <div class="bikeCard" data-category="Ciudad">
+                <img class="bikeImage" src="Ciudad.jpg" alt="Bicicleta de Ciudad">
+                <h3>Bicicleta de Ciudad</h3>
+                <p>Bicicleta versátil y cómoda para uso diario en la ciudad. Equipada con accesorios prácticos para facilitar tus desplazamientos urbanos.</p>
+                <p>Precio: $449</p>
+                <button>Comprar</button>
+            </div>
+        </div>
+
+        <!-- Agregamos el stock en movimiento -->
+        <div id="bikeStock"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Tienda de Bicicletas</p>
+    </footer>
+
+    <script>
+        function filterBikes() {
+            var input, filter, cards, card, i, txtValue;
+            input = document.getElementById("searchBar");
+            filter = input.value.toUpperCase();
+            cards = document.getElementsByClassName("bikeCard");
+
+            for (i = 0; i < cards.length; i++) {
+                card = cards[i];
+                txtValue = card.innerText || card.textContent;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    card.style.display = "";
+                    // Centramos la tarjeta en la pantalla
+                    window.scrollTo({
+                        top: card.offsetTop - (window.innerHeight / 2),
+                        behavior: 'smooth'
+                    });
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
